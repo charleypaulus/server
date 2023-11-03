@@ -38,18 +38,12 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class Delete extends Command {
-	protected IDBConnection $connection;
-	private Root $previewFolder;
-	private IMimeTypeLoader $mimeTypeLoader;
-
-	public function __construct(IDBConnection $connection,
-								Root $previewFolder,
-								IMimeTypeLoader $mimeTypeLoader) {
+	public function __construct(
+		protected IDBConnection $connection,
+		private Root $previewFolder,
+		private IMimeTypeLoader $mimeTypeLoader,
+	) {
 		parent::__construct();
-
-		$this->connection = $connection;
-		$this->previewFolder = $previewFolder;
-		$this->mimeTypeLoader = $mimeTypeLoader;
 	}
 
 	protected function configure() {
